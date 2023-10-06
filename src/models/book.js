@@ -16,9 +16,18 @@ const bookSchema = new  mongoose.Schema({
     },
     categoryId: [{
         type: mongoose.Types.ObjectId,
-        ref: Category,
+        ref: 'Category',
       }],
-    images: [String],
+      images: [{
+        url: {
+          type: String,
+          // required: true
+        },
+        publicId: {
+          type: String,
+          // required: true
+        }
+      }],
     price: {
         type: Number,
         require: true
@@ -31,14 +40,26 @@ const bookSchema = new  mongoose.Schema({
         type: Number,
         require: true
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-      },
-      updatedAt: {
-        type: Date,
-        default: Date.now, 
-      }
+    publishedAt: {
+      type: Date,
+      require: true
+    },
+    soldCount: {
+      type: Number,
+      default: 0
+    },
+    views: {
+      type: Number,
+      require: true
+    },
+    // createdAt: {
+    //     type: Date,
+    //     default: Date.now,
+    //   },
+    //   updatedAt: {
+    //     type: Date,
+    //     default: Date.now, 
+    //   }
 },
   {
     timestamps: true,

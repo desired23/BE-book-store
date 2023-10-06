@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Book from "./book.js";
 
 const categorySchema = new  mongoose.Schema({
     name: {
@@ -12,7 +13,7 @@ const categorySchema = new  mongoose.Schema({
     books: [
         {
           type: mongoose.Types.ObjectId,
-          ref: "Book",
+          ref: 'Book'
         },
       ],
       createdAt: {

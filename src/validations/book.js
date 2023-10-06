@@ -5,7 +5,12 @@ export const bookSchema = joi.object({
     description: joi.string().required().min(3).max(255),
     author: joi.string().required().min(3).max(255),
     categoryId: joi.array().items(joi.string()).required(),
-    images: joi.array().items(joi.string()),
+    images: joi.array().items(
+        joi.object({
+            url: joi.string().required(),
+            uid: joi.string().required()
+        })
+    ),
     price:joi.number().min(1).required(),
     stock:joi.number().min(0).required(),
     rating: joi.array().items(joi.number()).required()
