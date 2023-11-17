@@ -1,24 +1,30 @@
 import mongoose from "mongoose";
 import Category from "./category.js";
 
-const bookSchema = new  mongoose.Schema({
+const bookSchema = new mongoose.Schema(
+  {
     title: {
-        type: String,
-        require: true
+      type: String,
+      require: true,
     },
     description: {
-        type: String,
-        require: true
+      type: String,
+      require: true,
     },
-    author: {
-        type: String,
-        require: true
-    },
-    categoryId: [{
+    authorId: [
+      {
         type: mongoose.Types.ObjectId,
-        ref: 'Category',
-      }],
-      images: [{
+        ref: "Author",
+      },
+    ],
+    categoryId: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Category",
+      },
+    ],
+    images: [
+      {
         url: {
           type: String,
           // required: true
@@ -26,44 +32,46 @@ const bookSchema = new  mongoose.Schema({
         publicId: {
           type: String,
           // required: true
-        }
-      }],
+        },
+      },
+    ],
     price: {
-        type: Number,
-        require: true
+      type: Number,
+      require: true,
     },
-    rating: [{
-        type: Number,
-        require: true
-    }],
+    discount: {
+      type: Number,
+      require: true,
+    },
     stock: {
-        type: Number,
-        require: true
+      type: Number,
+      require: true,
     },
     publishedAt: {
       type: Date,
-      require: true
+      require: true,
     },
     soldCount: {
       type: Number,
-      default: 0
-    },
-    views: {
-      type: Number,
+      default: 0,
       require: true
     },
-    // createdAt: {
-    //     type: Date,
-    //     default: Date.now,
-    //   },
-    //   updatedAt: {
-    //     type: Date,
-    //     default: Date.now, 
-    //   }
-},
+    rating:{
+      type: mongoose.Schema.Types.Mixed,
+    },
+  },
   {
     timestamps: true,
     versionKey: false,
-  });
+  }
+);
 
-  export default mongoose.model('Book', bookSchema);
+bookSchema.pre("save", function (next) {
+  // Kiểm tra nếu trường `discount` chưa được thiết lập hoặc là null, hãy thiết lập nó bằng trường `price`
+  if (typeof this.discount !== "number" || isNaN(this.discount)) {
+    this.discount = this.price;
+  }
+  next();
+});
+
+export default mongoose.model("Book", bookSchema);

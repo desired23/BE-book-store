@@ -4,9 +4,7 @@ import cloudinary from "../config/cloudinaryConfig"
 export const uploadImages = async(req, res) => {
     try {
         const images = req.files.map(file => file.path)
-        console.log(images);
         const uploadedImages = []
-
         for (let image of images){
             const result = await cloudinary.uploader.upload(image)
             uploadedImages.push({
@@ -14,10 +12,7 @@ export const uploadImages = async(req, res) => {
                 publicId: result.public_id
             })
         }
-        return res.status(200).json({
-            message: "Upload images successfully",
-            datas: uploadedImages
-        })
+        return res.status(200).json(uploadedImages)
     } catch (error) {
         return res.status(400).json({
             name: error.name,

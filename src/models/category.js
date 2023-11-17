@@ -10,20 +10,10 @@ const categorySchema = new  mongoose.Schema({
         type: String,
         require: true
     },
-    books: [
-        {
-          type: mongoose.Types.ObjectId,
-          ref: 'Book'
-        },
-      ],
-      createdAt: {
-        type: Date,
-        default: Date.now,
-      },
-      updatedAt: {
-        type: Date,
-        default: Date.now, 
-      }
+    books:[{
+      type: mongoose.Types.ObjectId,
+      ref: "Book",
+    }],
 },
   {
     timestamps: true,
