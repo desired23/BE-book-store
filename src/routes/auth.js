@@ -11,7 +11,7 @@ routerAuth.post("/login", signin);
 routerAuth.get("/users",checkPermission, getAllUsersAsAdmin);
 routerAuth.patch("/user/:id/update", updateUser);
 routerAuth.delete("/users/:id",checkPermission, deleteUserPermanently);
-routerAuth.post("/user/change/password",checkUserPermission('user'), changePassword);
+routerAuth.post("/user/change/password",checkAuthenticatedUser, changePassword);
 
 
 

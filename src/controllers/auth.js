@@ -2,7 +2,7 @@ import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { signinSchema, signupSchema } from "../validations/auth.js";
+import { changePasswordSchema, signinSchema, signupSchema } from "../validations/auth.js";
 dotenv.config();
 
 const { SECRET_CODE } = process.env;
@@ -145,10 +145,8 @@ export const getAllUsersAsAdmin = async (req, res) => {
         .json({ message: "Không có người dùng nào trong hệ thống" });
     }
 
-    return res.status(200).json({
-      message: "Lấy danh sách người dùng thành công",
-      data: users,
-    });
+    return res.status(200).json( users
+    );
   } catch (error) {
     return res
       .status(500)
@@ -158,9 +156,8 @@ export const getAllUsersAsAdmin = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   try {
-    const userId = req.params.id; // Lấy ID của người dùng từ tham số URL
+    const userId = req.params.id; 
 
-    // Kiểm tra nếu người dùng có quyền xóa (nếu cần)
     const requestingUser = req.user;
     if (
       requestingUser.role !== "admin" &&
@@ -206,7 +203,7 @@ export const deleteUserPermanently = async (req, res) => {
 
     return res
       .status(200)
-      .json({ message: "Người dùng đã được xóa vĩnh viễn" });
+      .json(result);
   } catch (error) {
     return res
       .status(500)
