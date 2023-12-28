@@ -9,7 +9,7 @@
     "start": "node src/app.js",
     "server": "json-server --watch db.json --port 3001",
     "dev": "vite",
-    "build": "tsc && vite build"
+    "vercel-build": "echo hello"
   },
   "repository": {
     "type": "git",
