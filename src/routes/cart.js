@@ -1,6 +1,6 @@
 import express from "express";
-import { addToCart, getCart, updateCart } from "../controllers/cart";
-import { checkAuthenticatedUser, checkPermission } from "../middlewares/checkPermission";
+import { addToCart, getCart, updateCart } from "../controllers/cart.js";
+import { checkAuthenticatedUser, checkPermission } from "../middlewares/checkPermission.js";
 const routerCart = express.Router()
 
 routerCart.get('/', checkAuthenticatedUser, getCart)

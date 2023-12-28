@@ -1,6 +1,6 @@
 import express from "express";
-import { changeOrderStatus, changeShippingAddress, createOrder, getAll, getOrder, getOrdersByUser, updateOrder, deleteOrder } from "../controllers/order";
-import { checkAuthenticatedUser } from './../middlewares/checkPermission';
+import { changeOrderStatus, changeShippingAddress, createOrder, getAll, getOrder, getOrdersByUser, updateOrder, deleteOrder } from "../controllers/order.js";
+import { checkAuthenticatedUser } from './../middlewares/checkPermission.js';
 const routerOrder = express.Router()
 
 routerOrder.get('/', getAll),

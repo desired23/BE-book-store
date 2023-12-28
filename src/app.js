@@ -10,8 +10,6 @@ app.use(express.json());
 app.use(cors())
 mongoose.connect(`${process.env.URI_DB}`);
 
-// app.use("/api", routerProduct);
-// app.use("/api", routerAuth);
 app.use("/api", router);
 
 export const viteNodeApp = app;
