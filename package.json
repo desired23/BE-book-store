@@ -8,7 +8,8 @@
     "starthehe": "nodemon --experimental-modules --es-module-specifier-resolution=node ./src/app.js",
     "start": "node src/app.js",
     "server": "json-server --watch db.json --port 3001",
-    "dev": "vite"
+    "dev": "vite",
+    "build": "tsc && vite build"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,6 @@
   "dependencies": {
     "axios": "^1.5.0",
     "bcryptjs": "^2.4.3",
-    " ": "^1.41.0",
     "concurrently": "^8.2.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
